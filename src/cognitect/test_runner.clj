@@ -19,7 +19,7 @@
 (defn- var-filter
   [{:keys [var include exclude]}]
   (let [test-specific (if var
-                        (set (map #(or (resolve %)
+                        (set (map #(or (requiring-resolve %)
                                        (throw (ex-info (str "Could not resolve var: " %)
                                                        {:symbol %})))
                                   var))
